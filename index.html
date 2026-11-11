@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jiwon Lee (이지원) | Portfolio & Neo4j Knowledge Graph</title>
+  <meta name="description" content="Portfolio of Jiwon Lee - AI & Knowledge Graph Engineer. Interactive Neo4j knowledge graph, GraphRAG projects, and technical data explorer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#0891b2',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #020617;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #020617; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
+      <a href="#hero" class="text-lg font-bold tracking-tight text-white flex items-center gap-2 whitespace-nowrap shrink-0 hover:text-cyan-400 transition-colors">
+        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+        <span>Jiwon Lee</span>
+        <span class="text-xs font-normal text-slate-400">· Graph & AI Engineer</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-cyan-400 transition-colors whitespace-nowrap shrink-0">자기소개</a>
+        <a href="#projects" class="hover:text-cyan-400 transition-colors whitespace-nowrap shrink-0">프로젝트</a>
+        <a href="#data-explorer" class="hover:text-cyan-400 transition-colors whitespace-nowrap shrink-0">데이터 탐색 (Neo4j)</a>
+        <a href="#contact" class="hover:text-cyan-400 transition-colors whitespace-nowrap shrink-0">연락처</a>
+      </nav>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="mailto:jiwoni20040903@gmail.com" class="px-4 py-2 text-xs font-semibold text-slate-900 bg-cyan-400 rounded-lg hover:bg-cyan-300 transition-colors whitespace-nowrap shrink-0">
+          이메일 보내기
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="pt-32 pb-20 border-b border-slate-900 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 text-xs font-medium text-cyan-400">
+          <span>AI & KNOWLEDGE GRAPH SPECIALIST</span>
+          <span aria-hidden="true">·</span>
+          <span>NEO4J & GRAPHRAG</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight" style="text-wrap: balance;">
+          복잡한 엔터프라이즈 데이터를 <span class="text-cyan-400">지식 그래프</span>와 <span class="text-blue-400">인공지능</span>으로 연결합니다
+        </h1>
+        <p class="text-base text-slate-300 leading-relaxed max-w-2xl">
+          지식 그래프(Knowledge Graph)와 Neo4j, 최신 GraphRAG 기술을 기반으로 복잡하게 분산된 데이터 사이의 숨겨진 맥락과 인텔리전스를 연결하는 엔지니어 이지원입니다. 대규모 이기종 데이터 모델링, 온톨로지 구축, 그래프 신경망(GNN) 및 엔터프라이즈 AI 연동 아키텍처에 강점을 보유하고 있습니다.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="#data-explorer" class="px-5 py-2.5 text-sm font-semibold text-slate-950 bg-cyan-400 rounded-lg hover:bg-cyan-300 transition-colors">
+            인터랙티브 그래프 탐색
+          </a>
+          <a href="#projects" class="px-5 py-2.5 text-sm font-semibold text-slate-200 bg-slate-800/80 border border-slate-700/80 rounded-lg hover:bg-slate-700 transition-colors">
+            프로젝트 둘러보기
+          </a>
+          <button onclick="navigator.clipboard.writeText('jiwoni20040903@gmail.com'); alert('이메일(jiwoni20040903@gmail.com)이 복사되었습니다!');" class="px-5 py-2.5 text-sm font-semibold text-slate-300 bg-slate-900 border border-slate-800 rounded-lg hover:text-white transition-colors">
+            이메일 복사
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-6 relative">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <span class="text-xs text-slate-400 font-mono">NEO4J LIVE CLUSTER SPEC</span>
+            <span class="text-xs text-cyan-400 font-mono">STATUS: ACTIVE</span>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+              <div class="text-2xl font-bold font-mono text-cyan-400 tabular-nums">1.4M+</div>
+              <div class="text-xs text-slate-400 mt-1">Managed Nodes</div>
+            </div>
+            <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+              <div class="text-2xl font-bold font-mono text-blue-400 tabular-nums">3.8x</div>
+              <div class="text-xs text-slate-400 mt-1">GraphRAG Precision</div>
+            </div>
+            <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+              <div class="text-2xl font-bold font-mono text-emerald-400 tabular-nums">&lt; 24ms</div>
+              <div class="text-xs text-slate-400 mt-1">P99 Cypher Latency</div>
+            </div>
+            <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+              <div class="text-2xl font-bold font-mono text-indigo-400 tabular-nums">6+ Core</div>
+              <div class="text-xs text-slate-400 mt-1">Enterprise Solutions</div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 pt-2 border-t border-slate-800/60">
+            아래의 "데이터 탐색" 섹션에서 제 이력과 프로젝트, 기술 스택으로 구성된 실제 Neo4j 지식 그래프를 인터랙티브하게 직접 조작하실 수 있습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 border-b border-slate-900 bg-slate-950/50">
+    <div class="max-w-7xl mx-auto px-6 space-y-12">
+      <div class="max-w-3xl space-y-3">
+        <div class="text-xs font-semibold text-cyan-400">ABOUT ME</div>
+        <h2 class="text-3xl font-bold text-white tracking-tight">지식 그래프와 엔터프라이즈 AI의 교차점에서</h2>
+        <p class="text-slate-300 leading-relaxed">
+          데이터가 기하급수적으로 늘어나는 오늘날, 단순한 테이블 형태의 정형 데이터와 분산된 텍스트만으로는 비즈니스의 전체 맥락을 온전히 포착하기 어렵습니다. 저는 Neo4j 그래프 데이터베이스와 의미론적 온톨로지(Ontology), 그리고 최신 GraphRAG 기술을 접목하여 기업의 흩어진 데이터 자산을 하나의 살아있는 지식 네트워크로 구축합니다.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 bg-slate-900/60 border border-slate-800 rounded-xl space-y-3">
+          <div class="text-lg font-bold text-cyan-400">01. Graph Modeling & Cypher</div>
+          <p class="text-sm text-slate-300">
+            도메인 특화 라벨 속성 그래프(LPG) 및 W3C RDF 온톨로지 설계, 대용량 multi-hop Cypher 쿼리 튜닝 및 APOC 프로시저 최적화.
+          </p>
+        </div>
+        <div class="p-6 bg-slate-900/60 border border-slate-800 rounded-xl space-y-3">
+          <div class="text-lg font-bold text-blue-400">02. GraphRAG & AI Reasoning</div>
+          <p class="text-sm text-slate-300">
+            벡터 임베딩과 서브그래프 트래버설을 결합한 하이브리드 지식 검색 엔진 구축. LLM 환각률 대폭 절감 및 추론 신뢰도 확보.
+          </p>
+        </div>
+        <div class="p-6 bg-slate-900/60 border border-slate-800 rounded-xl space-y-3">
+          <div class="text-lg font-bold text-emerald-400">03. High-Throughput Pipelines</div>
+          <p class="text-sm text-slate-300">
+            Apache Kafka와 Neo4j 스트리밍 동기화, FastAPI 비동기 백엔드, 실시간 이상거래(FDS) 및 공급망 병목 추적 시스템 운영.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 border-b border-slate-900">
+    <div class="max-w-7xl mx-auto px-6 space-y-12">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="space-y-2">
+          <div class="text-xs font-semibold text-cyan-400">PROJECTS & CASE STUDIES</div>
+          <h2 class="text-3xl font-bold text-white tracking-tight">주요 프로젝트 및 성과</h2>
+        </div>
+        <div class="text-sm text-slate-400">
+          카드 클릭 시 문제 정의, 솔루션, 성과 지표 및 실제 Cypher 쿼리를 확인할 수 있습니다.
+        </div>
+      </div>
+
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Data Explorer Section (Interactive Canvas Graph) -->
+  <section id="data-explorer" class="py-20 border-b border-slate-900 bg-slate-950/80">
+    <div class="max-w-7xl mx-auto px-6 space-y-8">
+      <div class="space-y-2">
+        <div class="text-xs font-semibold text-cyan-400">INTERACTIVE GRAPH EXPLORER</div>
+        <h2 class="text-3xl font-bold text-white tracking-tight">Neo4j 지식 그래프 데이터 탐색기</h2>
+        <p class="text-slate-300 text-sm max-w-3xl">
+          노드를 드래그하거나 클릭하여 상세 속성 및 연결 관계를 확인하세요. 마우스 휠로 줌인/줌아웃이 가능합니다.
+        </p>
+      </div>
+
+      <!-- Controls bar -->
+      <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-slate-900/80 border border-slate-800 rounded-xl">
+        <div class="flex flex-wrap items-center gap-2" id="category-filters">
+          <!-- Dynamic filter buttons -->
+        </div>
+        <div class="flex items-center gap-3">
+          <input type="text" id="graph-search" placeholder="노드 검색 (예: Neo4j, Cypher)..." class="px-3 py-1.5 text-xs bg-slate-950 border border-slate-800 rounded-lg text-slate-200 focus:outline-none focus:border-cyan-400">
+          <button id="btn-reset-view" class="px-3 py-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg transition-colors">뷰 리셋</button>
+        </div>
+      </div>
+
+      <!-- Graph viewport + Inspector drawer -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-8 bg-slate-950 border border-slate-800 rounded-2xl relative overflow-hidden" style="height: 580px;">
+          <canvas id="network-canvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
+          <div class="absolute bottom-4 left-4 bg-slate-900/90 backdrop-blur border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-400 space-y-1 pointer-events-none">
+            <div>조작법: 마우스 드래그 (이동) · 스크롤 (확대/축소) · 노드 클릭 (상세보기)</div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4 bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between" style="min-height: 580px;">
+          <div id="inspector-content" class="space-y-4">
+            <div class="text-xs text-cyan-400 font-mono">NODE INSPECTOR</div>
+            <h3 id="node-title" class="text-xl font-bold text-white">노드를 클릭하세요</h3>
+            <p id="node-desc" class="text-xs text-slate-300 leading-relaxed">
+              좌측 인터랙티브 네트워크에서 아무 노드나 클릭하시면 해당 엔티티의 상세 속성, Cypher 쿼리, 인접 연결 관계를 즉시 확인할 수 있습니다.
+            </p>
+            <div id="node-props" class="space-y-2 pt-3 border-t border-slate-800 font-mono text-xs text-slate-300">
+              <!-- Node properties rendered here -->
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800/80">
+            <div class="text-xs text-slate-400 font-mono mb-2">CYPHER QUERY PREVIEW</div>
+            <pre id="node-cypher" class="p-3 bg-slate-950 rounded-lg text-xs font-mono text-cyan-300 overflow-x-auto">MATCH (n:Person {name: 'Jiwon Lee'})-[r]-(m) RETURN n, r, m LIMIT 25;</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Footer -->
+  <footer id="contact" class="py-16 bg-slate-950 text-slate-400 border-t border-slate-900">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+      <div class="md:col-span-6 space-y-3">
+        <h3 class="text-xl font-bold text-white">이지원 (Jiwon Lee)</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          AI & Knowledge Graph Engineer · Neo4j, Cypher, GraphRAG Specialist<br>
+          새로운 프로젝트 협업 및 기술 문의는 언제든 편하게 연락 주시기 바랍니다.
+        </p>
+        <div class="text-xs font-mono text-cyan-400">jiwoni20040903@gmail.com</div>
+      </div>
+      <div class="md:col-span-6 flex flex-wrap md:justify-end gap-4">
+        <a href="mailto:jiwoni20040903@gmail.com" class="px-4 py-2 text-xs font-semibold text-slate-950 bg-cyan-400 rounded-lg hover:bg-cyan-300 transition-colors">이메일 보내기</a>
+        <a href="https://linkedin.com/in/jiwon-lee-graph-ai" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-xs font-semibold text-slate-300 bg-slate-900 border border-slate-800 rounded-lg hover:text-white transition-colors">LinkedIn 프로필</a>
+        <a href="https://github.com/jiwon-lee" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-xs font-semibold text-slate-300 bg-slate-900 border border-slate-800 rounded-lg hover:text-white transition-colors">GitHub 리포지토리</a>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-8 pt-6 border-t border-slate-900 text-xs text-slate-500 text-center">
+      © 2026 Jiwon Lee. All rights reserved. Built with Neo4j Knowledge Graph Data Architecture.
+    </div>
+  </footer>
+
+  <!-- Embedded Data & Scripts -->
+  <script>
+    const GRAPH_NODES = [{"id":"jiwon-lee","name":"Jiwon Lee (이지원)","category":"Person","description":"Lead AI & Knowledge Graph Engineer specializing in Neo4j, GraphRAG, and ontology data pipelines.","properties":{"role":"Lead Graph Engineer","location":"Seoul","experience":"5+ yrs","primaryLanguage":"Python / Cypher"},"importance":5},{"id":"proj-graphrag","name":"GraphRAG Hybrid Engine","category":"Project","description":"Multi-hop semantic reasoning engine uniting Neo4j Knowledge Graph and dense vector embeddings for hallucination-free LLM generation.","properties":{"status":"Production","nodesCount":"320,000","querySpeed":"18ms","accuracyLift":"+62%"},"importance":4},{"id":"proj-biomedical","name":"Biomedical Knowledge Graph","category":"Project","description":"Unified pharmaceutical & genomic knowledge graph harmonizing UMLS, MeSH, and ChEMBL ontologies for drug discovery candidate triage.","properties":{"status":"Production","nodesCount":"850,000","relationshipsCount":"3.4M","domain":"Healthcare"},"importance":4},{"id":"proj-supplychain","name":"Supply Chain Provenance Graph","category":"Project","description":"High-throughput real-time provenance tracking and bottleneck detection engine powered by Kafka and Neo4j pathfinding.","properties":{"status":"Enterprise Deployed","throughput":"12k events/sec","pathResolution":"sub-second"},"importance":4},{"id":"proj-fraudring","name":"Financial Fraud & Sybil Ring Detector","category":"Project","description":"Graph algorithm pipeline identifying synthetic identity rings and circular transaction laundering using Neo4j GDS and Louvain clustering.","properties":{"detectionAccuracy":"94.2%","flaggedVolume":"$8.2M","engine":"Neo4j GDS"},"importance":3},{"id":"proj-cloudtopo","name":"Cloud Topology Dependency Mapper","category":"Project","description":"Automated microservice and cloud asset dependency visualizer with incident root-cause blast-radius calculation.","properties":{"liveSync":"OpenTelemetry","refreshInterval":"10s","nodesTracked":"4,500"},"importance":3},{"id":"neo4j","name":"Neo4j Database","category":"Database","description":"Native graph database engine supporting ACID transactions, Cypher graph query language, and GDS library.","properties":{"version":"5.20+ Enterprise","queryEngine":"Cypher","index":"Vector & Fulltext"},"importance":5},{"id":"cypher","name":"Cypher Query Language","category":"Skill","description":"Declarative graph query language for pattern matching, path traversals, and topological analytics.","properties":{"proficiency":"Expert","queryOptimization":"INDEX, EXPLAIN, PROFILE"},"importance":4},{"id":"graphrag","name":"GraphRAG Architecture","category":"Skill","description":"Graph-augmented retrieval framework combining ontology-based graph traversal with vector similarity for contextual AI grounding.","properties":{"framework":"LlamaIndex / LangChain","vectorIndex":"Cosine / HNSW"},"importance":5},{"id":"neo4j-gds","name":"Neo4j Graph Data Science (GDS)","category":"Technology","description":"In-memory graph analytics library offering PageRank, Louvain, Node2Vec, and shortest path algorithms at scale.","properties":{"version":"2.6+","parallelWorkers":"Multi-threaded"},"importance":4},{"id":"python-fastapi","name":"Python & FastAPI","category":"Technology","description":"High-performance asynchronous backend services for graph query orchestration and streaming responses.","properties":{"asyncSupport":"Native","pydantic":"v2"},"importance":4},{"id":"kafka","name":"Apache Kafka","category":"Technology","description":"Distributed event streaming platform for feeding live transactional telemetry into the Neo4j ingestion worker.","properties":{"streamFormat":"JSON / Avro","consumers":"Neo4j Connector"},"importance":3},{"id":"gemini-ai","name":"Gemini AI API","category":"Technology","description":"Multimodal foundation models for entity extraction, relation classification, and natural language to Cypher translation.","properties":{"models":"Gemini 2.5 Flash / Pro","latency":"ultra-low"},"importance":4},{"id":"ontology-eng","name":"Ontology Engineering","category":"Skill","description":"Formal knowledge representation, RDF/OWL conceptual schemas, taxonomies, and property graph data modeling.","properties":{"standards":"W3C OWL, RDF, SHACL","designPrinciple":"Domain Driven"},"importance":4},{"id":"algo-pagerank","name":"PageRank & Centrality","category":"Algorithm","description":"Link analysis algorithm measuring node influence and transitive authority across directed citation networks.","properties":{"family":"Centrality","complexity":"O(V + E)"},"importance":3},{"id":"algo-louvain","name":"Louvain Community Detection","category":"Algorithm","description":"Heuristic method for maximizing modularity to discover tightly knit subgraphs and fraud syndicates.","properties":{"family":"Community Detection","optimization":"Modularity Q"},"importance":3},{"id":"algo-dijkstra","name":"A* & Shortest Path","category":"Algorithm","description":"Heuristic pathfinding algorithm for lowest-latency routing, supply chain bottlenecks, and lineage tracing.","properties":{"family":"Pathfinding","heuristic":"Geographic & Weight"},"importance":3},{"id":"domain-healthcare","name":"Biomedical & Healthcare","category":"Domain","description":"Life sciences ontology, clinical trials matching, target validation, and pharmacological interaction modeling.","properties":{"compliance":"HIPAA compliant schemas","terminology":"SNOMED CT, ICD-10"},"importance":3},{"id":"domain-finance","name":"FinTech & AML","category":"Domain","description":"Anti-Money Laundering, transaction graph topology, synthetic customer account clustering, and risk scoring.","properties":{"latencyGoal":"Near real-time","regulation":"FSS / AML rules"},"importance":3},{"id":"domain-logistics","name":"Global Supply Chain","category":"Domain","description":"Multi-tier supplier bill-of-materials traceability, ESG compliance tracing, and freight disruption analysis.","properties":{"multiTier":"Tier 1 to Tier 4","geoMapping":"GPS Lat/Long"},"importance":3}];
+    const GRAPH_EDGES = [{"id":"e1","source":"jiwon-lee","target":"graphrag","type":"SPECIALIZES_IN","label":"Specializes In"},{"id":"e2","source":"jiwon-lee","target":"cypher","type":"SPECIALIZES_IN","label":"Specializes In"},{"id":"e3","source":"jiwon-lee","target":"neo4j","type":"ADMINISTERS","label":"Administers"},{"id":"e4","source":"jiwon-lee","target":"ontology-eng","type":"PRACTICES","label":"Practices"},{"id":"e5","source":"jiwon-lee","target":"proj-graphrag","type":"LEAD_ARCHITECT","label":"Lead Architect"},{"id":"e6","source":"jiwon-lee","target":"proj-biomedical","type":"LEAD_ARCHITECT","label":"Lead Architect"},{"id":"e7","source":"jiwon-lee","target":"proj-supplychain","type":"LEAD_ARCHITECT","label":"Lead Architect"},{"id":"e8","source":"jiwon-lee","target":"proj-fraudring","type":"CONTRIBUTOR","label":"Contributor"},{"id":"e9","source":"jiwon-lee","target":"proj-cloudtopo","type":"DEVELOPED","label":"Developed"},{"id":"e10","source":"proj-graphrag","target":"neo4j","type":"USES_DATABASE","label":"Uses Database"},{"id":"e11","source":"proj-graphrag","target":"graphrag","type":"IMPLEMENTS","label":"Implements"},{"id":"e12","source":"proj-graphrag","target":"gemini-ai","type":"POWERED_BY","label":"Powered By"},{"id":"e13","source":"proj-graphrag","target":"python-fastapi","type":"BUILT_WITH","label":"Built With"},{"id":"e14","source":"proj-biomedical","target":"neo4j","type":"USES_DATABASE","label":"Uses Database"},{"id":"e15","source":"proj-biomedical","target":"ontology-eng","type":"APPLIES_ONTOLOGY","label":"Applies Ontology"},{"id":"e16","source":"proj-biomedical","target":"domain-healthcare","type":"SERVES_DOMAIN","label":"Serves Domain"},{"id":"e17","source":"proj-supplychain","target":"neo4j","type":"USES_DATABASE","label":"Uses Database"},{"id":"e18","source":"proj-supplychain","target":"kafka","type":"INGESTS_FROM","label":"Ingests From"},{"id":"e19","source":"proj-supplychain","target":"algo-dijkstra","type":"APPLIES_ALGORITHM","label":"Applies Algorithm"},{"id":"e20","source":"proj-supplychain","target":"domain-logistics","type":"SERVES_DOMAIN","label":"Serves Domain"},{"id":"e21","source":"proj-fraudring","target":"neo4j-gds","type":"ANALYTICS_ENGINE","label":"Analytics Engine"},{"id":"e22","source":"proj-fraudring","target":"algo-louvain","type":"APPLIES_ALGORITHM","label":"Applies Algorithm"},{"id":"e23","source":"proj-fraudring","target":"algo-pagerank","type":"APPLIES_ALGORITHM","label":"Applies Algorithm"},{"id":"e24","source":"proj-fraudring","target":"domain-finance","type":"SERVES_DOMAIN","label":"Serves Domain"},{"id":"e25","source":"neo4j","target":"cypher","type":"EXECUTES","label":"Executes"},{"id":"e26","source":"neo4j","target":"neo4j-gds","type":"EXTENDS","label":"Extends"},{"id":"e27","source":"cypher","target":"graphrag","type":"POWERS","label":"Powers"},{"id":"e28","source":"python-fastapi","target":"neo4j","type":"CONNECTS_VIA_BOLT","label":"Connects Via Bolt"}];
+    const PROJECTS = [{"id":"graphrag-hybrid-engine","title":"GraphRAG Hybrid Intelligence Engine","subtitle":"Neo4j + Vector Fusion for Zero-Hallucination Enterprise RAG","category":"GraphRAG & AI","period":"2024 - 2026","summary":"엔터프라이즈 사내 문서와 위키, 기술 규격서의 다중 홉(Multi-hop) 질문 답변을 위해 Neo4j 지식 그래프와 고차원 벡터 임베딩을 결합한 하이브리드 검색 엔진입니다.","problem":"전통적인 Naive RAG(단순 벡터 검색)는 연관 문서 간의 관계와 문맥 계층을 파악하지 못해 복합 추론 질문에서 60% 이상의 환각(Hallucination)이 발생하는 한계가 있었습니다.","solution":"문서 내 개체(Entity)와 관계(Relationship)를 추출하여 Neo4j 지식 그래프로 정형화하고, 질문 분석 시 서브그래프 트래버설과 벡터 유사도를 가중 합산하는 Reranker 파이프라인을 구축했습니다.","impactMetrics":[{"label":"환각 발생률 감소","value":"-62%"},{"label":"복합 추론 정확도","value":"92.4%"},{"label":"P99 검색 지연 시간","value":"18ms"}],"techStack":["Neo4j","Cypher","LangChain","Gemini 2.5","Python FastAPI","FastEmbed"],"cypherSample":"// Subgraph hybrid expansion around retrieved entities\nMATCH (e:Entity)\nWHERE e.id IN $seedEntityIds\nOPTIONAL MATCH (e)-[r:RELATION*1..2]-(neighbor:Entity)\nWITH e, neighbor, r\nRETURN e.name, type(r[0]), neighbor.name\nLIMIT 50;","relatedNodeIds":["proj-graphrag","neo4j","graphrag","gemini-ai","cypher"]},{"id":"biomedical-knowledge-graph","title":"Biomedical & Drug Ontology Graph","subtitle":"85만 개체와 340만 관계의 이기종 제약·바이오 지식 그래프","category":"Neo4j & Data Engineering","period":"2023 - 2024","summary":"신약 후보 물질 탐색과 약물 상호작용(DDI) 규명을 위해 분산된 공공 바이오 온톨로지(UMLS, MeSH, ChEMBL)를 통합 정규화한 Neo4j 그래프 플랫폼입니다.","problem":"약물명, 질환명, 단백질 표적 데이터가 각기 다른 데이터베이스에 분산되어 있어, 다단계 약물 기전 및 부작용 경로 분석에 수일이 소요되었습니다.","solution":"W3C RDF 표준 스키마를 라벨 속성 그래프(LPG) 모델로 변환하여 Neo4j에 로드하고, 인메모리 APOC 프로시저를 통해 4홉 상호작용 경로를 실시간 탐색 가능하도록 최적화했습니다.","impactMetrics":[{"label":"통합 노드 수","value":"850K+"},{"label":"관계 엣지 수","value":"3.4M"},{"label":"약물 후보 탐색 소요 시간","value":"4일 → 2분"}],"techStack":["Neo4j Enterprise","Cypher","APOC","BioPortal RDF","GraphQL","Python"],"cypherSample":"// Drug-Target-Disease Interaction 3-Hop Traversal\nMATCH (d:Drug {name: $drugName})-[r1:TARGETS]->(t:Target)\nMATCH (t)-[r2:ASSOCIATED_WITH]->(dis:Disease)\nRETURN d.name, t.symbol, dis.name, r1.affinityScore\nORDER BY r1.affinityScore DESC\nLIMIT 20;","relatedNodeIds":["proj-biomedical","neo4j","ontology-eng","domain-healthcare","cypher"]},{"id":"supplychain-provenance-tracker","title":"Global Supply Chain Provenance Tracker","subtitle":"실시간 카프카 스트리밍 기반 다계층 원산지 및 병목 추적 시스템","category":"Distributed Systems","period":"2023 - 2024","summary":"글로벌 제조 유통망의 1차~4차 협력업체 부품 원산지와 선적 상태를 실시간 이벤트 스트리밍으로 Neo4j에 동기화하고 최단 대체 경로를 제안하는 시스템입니다.","problem":"물류 지연이나 지정학적 리스크 발생 시 복합 공급망의 3차 이하 벤더 병목 지점을 추적하는 데 48시간 이상의 수작업 엑셀 취합이 필요했습니다.","solution":"Apache Kafka 이벤트 토픽을 Neo4j Connector로 직접 결합하여 초당 12,000건의 입출고 상태를 실시간 그래프화하고, A* 가중치 경로탐색으로 대체 루트를 자동 추천하도록 개발했습니다.","impactMetrics":[{"label":"이벤트 처리량","value":"12,000 req/s"},{"label":"경로 분석 지연","value":"< 450ms"},{"label":"공급망 리스크 대응 속도","value":"18배 개선"}],"techStack":["Neo4j","Apache Kafka","A* Pathfinding","Docker","FastAPI","Next.js"],"cypherSample":"// Shortest bottleneck-free delivery route\nMATCH (start:Facility {id: $sourceId}), (dest:Facility {id: $destId})\nCALL apoc.algo.dijkstra(start, dest, 'CONNECTED_TO>', 'leadTimeDays')\nYIELD path, weight\nRETURN [n in nodes(path) | n.name] AS route, weight AS totalDays;","relatedNodeIds":["proj-supplychain","neo4j","kafka","algo-dijkstra","domain-logistics"]},{"id":"fraudring-detector","title":"Financial Sybil & Fraud Ring Detection","subtitle":"Neo4j GDS를 활용한 자금세탁 및 대포통장 조직 클러스터링","category":"Neo4j & Data Engineering","period":"2024","summary":"전자금융 이체 로그와 동일 IP/디바이스 식별자 연결 그래프에서 점조직형 자금세탁(Smurfing) 및 가공 인물(Synthetic Identity) 고리를 자동 적발하는 분석 엔진입니다.","problem":"규칙 기반(Rule-based) 이상거래 탐지(FDS)는 3인 이상이 연루된 원형 순환 거래(Circular transaction)나 계좌 쪼개기 수법을 탐지하지 못했습니다.","solution":"Neo4j Graph Data Science(GDS)의 Louvain 알고리즘과 PageRank를 파이프라인으로 구성하여 자금 유입 집중 노드를 규명하고 폐쇄 루프(Cycle) 패턴을 5단계 홉으로 적발했습니다.","impactMetrics":[{"label":"이상 거래 적발 금액","value":"82억원 ($6M+)"},{"label":"탐지 정밀도 (Precision)","value":"94.2%"},{"label":"오탐율 (False Positive)","value":"2.1%로 78% 절감"}],"techStack":["Neo4j GDS","Louvain","PageRank","PyTorch Geometric","Python","Streamlit"],"cypherSample":"// Detect circular flow of funds (Cycles of length 3-5)\nMATCH path = (a:Account)-[:TRANSFERRED_TO*3..5]->(a)\nWHERE ALL(r in relationships(path) WHERE r.timestamp > $startTime)\nRETURN [n in nodes(path) | n.accountNumber] AS ringMembers,\n       reduce(total = 0, r in relationships(path) | total + r.amount) AS totalAmount\nLIMIT 10;","relatedNodeIds":["proj-fraudring","neo4j-gds","algo-louvain","algo-pagerank","domain-finance"]},{"id":"cloudtopo-dependency-mapper","title":"Cloud Topology & Blast-Radius Mapper","subtitle":"클라우드 인프라 자산 간 종속성 및 장애 영향도 실시간 가시화","category":"Distributed Systems","period":"2023","summary":"쿠버네티스 포드, 마이크로서비스, 클라우드 DB, 메시지 큐 간의 런타임 종속성을 수집하여 장애 발생 시 파급 반경(Blast Radius)을 즉시 계산하는 모니터링 그래프입니다.","problem":"분산 마이크로서비스 아키텍처에서 하나의 서비스 장애가 연쇄 다운타임을 유발할 때 근본 원인(Root Cause) 식별에 평균 45분이 소요되었습니다.","solution":"OpenTelemetry 트레이스 데이터를 실시간으로 Neo4j에 그래프 스트림으로 기록하고, 역방향 종속성 순회 쿼리를 통해 영향받는 서비스 목록과 고객 트래픽을 10초 내 계산하도록 했습니다.","impactMetrics":[{"label":"장애 영향도 파악 시간","value":"45분 → 30초"},{"label":"추적 인프라 노드","value":"4,500+ Nodes"},{"label":"평균 복구 시간 (MTTR)","value":"64% 단축"}],"techStack":["Neo4j","OpenTelemetry","React Flow","FastAPI","Kubernetes"],"cypherSample":"// Downstream blast radius analysis\nMATCH (down:Service {name: $incidentService})<-[:DEPENDS_ON*1..4]-(impacted:Service)\nRETURN impacted.name, min(length(impacted)) AS distance\nORDER BY distance ASC;","relatedNodeIds":["proj-cloudtopo","neo4j","cypher"]},{"id":"academic-citation-network","title":"AI & Knowledge Graph Citation Navigator","subtitle":"20만 논문 데이터셋 인용 네트워크 영향력 분석 및 연구 트렌드 탐색","category":"GraphRAG & AI","period":"2022 - 2023","summary":"arXiv 및 DBLP 컴퓨터 과학 논문 20만 편의 인용 관계와 공저자 네트워크를 색인하여 주요 학술 허브와 유망 신진 연구자를 발굴하는 대화형 그래프 포털입니다.","problem":"키워드 검색만으로는 학계의 패러다임 전환이나 특정 알고리즘의 확산 경로, 연구실 간의 협력 패턴을 직관적으로 조망하기 어려웠습니다.","solution":"PageRank로 권위 논문을 스코어링하고 Betweenness Centrality로 다학제 융합 논문을 포착하여 인터랙티브 네트워크 시각화로 서비스했습니다.","impactMetrics":[{"label":"인덱싱 논문 수","value":"200,000+"},{"label":"인용 관계 엣지","value":"1.2M+"},{"label":"연구자 매칭 정확도","value":"91.8%"}],"techStack":["Neo4j GDS","PageRank","D3.js","Cypher","Python"],"cypherSample":"// Find influential bridge papers between AI and Graphs\nMATCH (p:Paper)-[:CITES]->(cited:Paper)\nWHERE p.field = 'Graph Learning' AND cited.field = 'LLM'\nRETURN p.title, p.citationCount, cited.title\nORDER BY p.citationCount DESC\nLIMIT 15;","relatedNodeIds":["algo-pagerank","neo4j-gds","cypher"]}];
+    const PROFILE = {"name":"이지원 (Jiwon Lee)","englishName":"Jiwon Lee","headline":"AI & Knowledge Graph Engineer","subheadline":"Connecting Unstructured Data into Actionable Intelligence with Neo4j & GraphRAG","email":"jiwoni20040903@gmail.com","github":"https://github.com/jiwon-lee","linkedin":"https://linkedin.com/in/jiwon-lee-graph-ai","location":"Seoul, South Korea / Remote","bio":"지식 그래프(Knowledge Graph)와 Neo4j, 최신 GraphRAG 기술을 기반으로 복잡하게 얽힌 엔터프라이즈 데이터에서 의미론적 맥락과 인텔리전스를 도출하는 엔지니어입니다. 이기종 데이터 소스의 온톨로지 설계부터 고성능 Cypher 쿼리 튜닝, 그래프 신경망(GNN) 및 LLM 파이프라인 연계 아키텍처를 전문으로 합니다.","stats":[{"label":"Graph Nodes Managed","value":"1.4M+","description":"Across production clusters"},{"label":"GraphRAG Precision Lift","value":"3.8x","description":"Over pure vector search"},{"label":"Cypher Query P99 Latency","value":"< 24ms","description":"Deep multi-hop traversals"},{"label":"Core Graph Projects","value":"6+","description":"Enterprise & Open Source"}],"competencies":[{"category":"Graph Databases & Cypher","items":["Neo4j Enterprise / AuraDB","Cypher Query Optimization","Graph Data Science (GDS)","Graph Modeling & APOC","Multi-tenant Graph Partitioning"]},{"category":"AI, LLM & GraphRAG","items":["GraphRAG Hybrid Retrieval","LangChain / LlamaIndex Graph Store","Ontology & Schema Induction","Gemini & Claude Embeddings","Vector + Graph Hybrid Index"]},{"category":"Data Engineering & Systems","items":["Python & FastAPI","Apache Kafka Graph Streaming","PostgreSQL & pgvector","Docker / Kubernetes","GraphQL & REST API Design"]}]};
+
+    // Render Projects
+    const projectsContainer = document.getElementById('projects-grid');
+    if (projectsContainer) {
+      projectsContainer.innerHTML = PROJECTS.map(p => `
+        <div class="p-6 bg-slate-900/60 border border-slate-800 hover:border-cyan-500/50 rounded-2xl transition-all duration-200 flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="text-xs font-mono text-cyan-400">${p.category} · ${p.period}</div>
+            <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">${p.title}</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">${p.subtitle}</p>
+            <p class="text-xs text-slate-300 leading-relaxed pt-2">${p.summary}</p>
+            <div class="grid grid-cols-2 gap-2 pt-3 border-t border-slate-800/80">
+              ${p.impactMetrics.slice(0, 2).map(m => `
+                <div class="p-2 bg-slate-950/70 rounded-lg border border-slate-800/60">
+                  <div class="text-xs text-slate-400">${m.label}</div>
+                  <div class="text-sm font-bold font-mono text-cyan-400 tabular-nums mt-0.5">${m.value}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-slate-800/80">
+            ${p.techStack.map(t => `<span class="text-xs text-slate-400 font-mono">#${t}</span>`).join(' ')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Interactive Force-Directed Canvas Graph
+    const canvas = document.getElementById('network-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let width, height;
+      function resize() {
+        width = canvas.parentElement.clientWidth;
+        height = canvas.parentElement.clientHeight;
+        canvas.width = width * window.devicePixelRatio;
+        canvas.height = height * window.devicePixelRatio;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      const CATEGORY_COLORS = {
+        Person: '#22d3ee',
+        Project: '#60a5fa',
+        Skill: '#34d399',
+        Database: '#f59e0b',
+        Technology: '#a78bfa',
+        Algorithm: '#f43f5e',
+        Domain: '#fb923c'
+      };
+
+      // Populate filter buttons
+      const filtersEl = document.getElementById('category-filters');
+      const activeCategories = new Set(Object.keys(CATEGORY_COLORS));
+      
+      function renderFilters() {
+        if (!filtersEl) return;
+        filtersEl.innerHTML = Object.keys(CATEGORY_COLORS).map(cat => {
+          const isActive = activeCategories.has(cat);
+          const color = CATEGORY_COLORS[cat];
+          return `<button onclick="toggleCategory('${cat}')" class="px-2.5 py-1 text-xs rounded-md font-medium transition-colors ${isActive ? 'bg-slate-800 text-white border border-slate-700' : 'bg-slate-950 text-slate-500 border border-slate-900'}">
+            <span class="inline-block w-2 h-2 rounded-full mr-1.5" style="background-color: ${color}"></span>${cat}
+          </button>`;
+        }).join('');
+      }
+      window.toggleCategory = function(cat) {
+        if (activeCategories.has(cat)) activeCategories.delete(cat);
+        else activeCategories.add(cat);
+        renderFilters();
+      };
+      renderFilters();
+
+      // Setup node physics particles
+      const nodes = GRAPH_NODES.map((n, i) => {
+        const angle = (i / GRAPH_NODES.length) * Math.PI * 2;
+        const radius = 120 + (i % 3) * 60;
+        return {
+          ...n,
+          x: width / 2 + Math.cos(angle) * radius,
+          y: height / 2 + Math.sin(angle) * radius,
+          vx: (Math.random() - 0.5) * 2,
+          vy: (Math.random() - 0.5) * 2,
+          radius: (n.importance || 3) * 5 + 8
+        };
+      });
+
+      const nodeMap = new Map(nodes.map(n => [n.id, n]));
+      let selectedNode = nodes[0];
+      let hoveredNode = null;
+      let draggedNode = null;
+      let transform = { x: 0, y: 0, k: 1 };
+
+      function updateInspector(node) {
+        if (!node) return;
+        document.getElementById('node-title').textContent = node.name;
+        document.getElementById('node-desc').textContent = node.description;
+        const propsEl = document.getElementById('node-props');
+        if (propsEl) {
+          propsEl.innerHTML = Object.entries(node.properties || {}).map(([k, v]) => `
+            <div class="flex justify-between py-1 border-b border-slate-800/40">
+              <span class="text-slate-500">${k}:</span>
+              <span class="text-slate-200 font-bold">${v}</span>
+            </div>
+          `).join('') || '<div class="text-slate-500">No extra properties</div>';
+        }
+        const cypherEl = document.getElementById('node-cypher');
+        if (cypherEl) {
+          cypherEl.textContent = `MATCH (n:${node.category} {id: '${node.id}'})-[r]-(neighbor)
+RETURN n, r, neighbor LIMIT 25;`;
+        }
+      }
+      updateInspector(selectedNode);
+
+      // Simulation loop
+      function tick() {
+        // Physics update
+        const visibleNodes = nodes.filter(n => activeCategories.has(n.category));
+        
+        for (let i = 0; i < visibleNodes.length; i++) {
+          for (let j = i + 1; j < visibleNodes.length; j++) {
+            const a = visibleNodes[i];
+            const b = visibleNodes[j];
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+            const minDist = (a.radius + b.radius) * 2.8;
+            if (dist < minDist) {
+              const force = (minDist - dist) / dist * 0.04;
+              a.vx -= dx * force;
+              a.vy -= dy * force;
+              b.vx += dx * force;
+              b.vy += dy * force;
+            }
+          }
+        }
+
+        // Spring forces along edges
+        GRAPH_EDGES.forEach(edge => {
+          const s = nodeMap.get(edge.source);
+          const t = nodeMap.get(edge.target);
+          if (s && t && activeCategories.has(s.category) && activeCategories.has(t.category)) {
+            const dx = t.x - s.x;
+            const dy = t.y - s.y;
+            const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+            const targetDist = 130;
+            const force = (dist - targetDist) * 0.003;
+            s.vx += (dx / dist) * force;
+            s.vy += (dy / dist) * force;
+            t.vx -= (dx / dist) * force;
+            t.vy -= (dy / dist) * force;
+          }
+        });
+
+        // Center gravity and damping
+        visibleNodes.forEach(n => {
+          if (n !== draggedNode) {
+            n.vx += (width / 2 - n.x) * 0.001;
+            n.vy += (height / 2 - n.y) * 0.001;
+            n.vx *= 0.88;
+            n.vy *= 0.88;
+            n.x += n.vx;
+            n.y += n.vy;
+          }
+        });
+
+        // Render Canvas
+        ctx.save();
+        ctx.clearRect(0, 0, width, height);
+        ctx.translate(transform.x, transform.y);
+        ctx.scale(transform.k, transform.k);
+
+        // Draw Edges
+        GRAPH_EDGES.forEach(edge => {
+          const s = nodeMap.get(edge.source);
+          const t = nodeMap.get(edge.target);
+          if (s && t && activeCategories.has(s.category) && activeCategories.has(t.category)) {
+            const isHighlight = (selectedNode && (selectedNode.id === s.id || selectedNode.id === t.id));
+            ctx.beginPath();
+            ctx.moveTo(s.x, s.y);
+            ctx.lineTo(t.x, t.y);
+            ctx.strokeStyle = isHighlight ? 'rgba(34, 211, 238, 0.7)' : 'rgba(51, 65, 85, 0.4)';
+            ctx.lineWidth = isHighlight ? 2 : 1;
+            ctx.stroke();
+
+            // Edge label
+            if (isHighlight) {
+              const mx = (s.x + t.x) / 2;
+              const my = (s.y + t.y) / 2;
+              ctx.font = '10px "JetBrains Mono"';
+              ctx.fillStyle = '#94a3b8';
+              ctx.fillText(edge.type, mx - 15, my - 4);
+            }
+          }
+        });
+
+        // Draw Nodes
+        visibleNodes.forEach(n => {
+          const isSelected = selectedNode && selectedNode.id === n.id;
+          const isHovered = hoveredNode && hoveredNode.id === n.id;
+          const color = CATEGORY_COLORS[n.category] || '#94a3b8';
+
+          // Outer halo
+          if (isSelected || isHovered) {
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.radius + 6, 0, Math.PI * 2);
+            ctx.fillStyle = color + '33';
+            ctx.fill();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+          }
+
+          // Node body
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+          ctx.fillStyle = '#0f172a';
+          ctx.fill();
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 2.5;
+          ctx.stroke();
+
+          // Node title text
+          ctx.font = '11px "Plus Jakarta Sans", sans-serif';
+          ctx.fillStyle = isSelected ? '#ffffff' : '#cbd5e1';
+          ctx.textAlign = 'center';
+          ctx.fillText(n.name, n.x, n.y + n.radius + 14);
+        });
+
+        ctx.restore();
+        requestAnimationFrame(tick);
+      }
+      tick();
+
+      // Mouse interactions
+      let isPanning = false;
+      let startX, startY;
+
+      canvas.addEventListener('mousedown', e => {
+        const rect = canvas.getBoundingClientRect();
+        const mx = (e.clientX - rect.left - transform.x) / transform.k;
+        const my = (e.clientY - rect.top - transform.y) / transform.k;
+
+        const hit = nodes.find(n => activeCategories.has(n.category) && Math.hypot(n.x - mx, n.y - my) <= n.radius + 4);
+        if (hit) {
+          draggedNode = hit;
+          selectedNode = hit;
+          updateInspector(hit);
+        } else {
+          isPanning = true;
+          startX = e.clientX - transform.x;
+          startY = e.clientY - transform.y;
+        }
+      });
+
+      window.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        const mx = (e.clientX - rect.left - transform.x) / transform.k;
+        const my = (e.clientY - rect.top - transform.y) / transform.k;
+
+        if (draggedNode) {
+          draggedNode.x = mx;
+          draggedNode.y = my;
+          draggedNode.vx = 0;
+          draggedNode.vy = 0;
+        } else if (isPanning) {
+          transform.x = e.clientX - startX;
+          transform.y = e.clientY - startY;
+        } else {
+          hoveredNode = nodes.find(n => activeCategories.has(n.category) && Math.hypot(n.x - mx, n.y - my) <= n.radius + 4) || null;
+        }
+      });
+
+      window.addEventListener('mouseup', () => {
+        draggedNode = null;
+        isPanning = false;
+      });
+
+      canvas.addEventListener('wheel', e => {
+        e.preventDefault();
+        const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
+        transform.k = Math.max(0.4, Math.min(2.5, transform.k * zoomFactor));
+      });
+
+      document.getElementById('btn-reset-view')?.addEventListener('click', () => {
+        transform = { x: 0, y: 0, k: 1 };
+      });
+
+      document.getElementById('graph-search')?.addEventListener('input', e => {
+        const query = e.target.value.toLowerCase().trim();
+        if (!query) return;
+        const match = nodes.find(n => n.name.toLowerCase().includes(query) || n.description.toLowerCase().includes(query));
+        if (match) {
+          selectedNode = match;
+          updateInspector(match);
+          transform.x = width / 2 - match.x * transform.k;
+          transform.y = height / 2 - match.y * transform.k;
+        }
+      });
+    }
+
+    // Initialize lucide icons if loaded
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
